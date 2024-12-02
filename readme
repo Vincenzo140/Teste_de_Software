@@ -1,0 +1,114 @@
+# Documentação do Projeto em FastAPI
+
+![Logo do FastAPI](https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png)
+
+## Visão Geral
+
+Este projeto utiliza **FastAPI**, um framework web assíncrono para Python, para criar e gerenciar uma API REST com operações CRUD para um modelo de dados complexo. O projeto apresenta endpoints para criar, ler, atualizar e excluir objetos (`ComplexAlgo`), que consistem em múltiplos campos, incluindo strings, emails, tags e prioridades.
+
+## Tecnologias Utilizadas
+
+- **Python 3.9+**: Linguagem de programação principal.
+- **FastAPI**: Framework para desenvolvimento de APIs.
+- **Pydantic**: Validação de dados usando anotações de tipo do Python.
+- **Uvicorn**: Servidor ASGI para executar aplicações FastAPI.
+- **Pytest**: Biblioteca de testes para criar e executar testes unitários.
+- **HTTPX**: Utilizado pelo TestClient para fazer requisições HTTP durante os testes.
+
+## Endpoints
+
+### POST `/post`
+- Adiciona um novo objeto `ComplexAlgo` ao armazenamento.
+- **Atributos**:
+  - `id`: UUID gerado automaticamente.
+  - `mensagem`: Uma mensagem entre 5 e 255 caracteres.
+  - `prioridade`: Nível de prioridade opcional (1 a 5).
+  - `email`: Um endereço de email válido.
+  - `tags`: Lista de strings.
+
+### GET `/get`
+- Recupera todos os objetos `ComplexAlgo` armazenados.
+
+### GET `/get/{item_id}`
+- Recupera um objeto `ComplexAlgo` específico pelo seu ID.
+
+### DELETE `/delete/{item_id}`
+- Exclui um objeto `ComplexAlgo` do armazenamento pelo seu ID.
+
+## Como Executar o Projeto
+
+### Passo 1: Criar um Ambiente Virtual (Opcional)
+
+Para evitar conflitos com outros projetos, crie um ambiente virtual:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # No Windows: venv\Scripts\activate
+```
+
+### Passo 2: Instalar Dependências
+
+Crie um arquivo `requirements.txt` com o seguinte conteúdo:
+
+```plaintext
+fastapi
+pydantic
+httpx
+pytest
+uvicorn
+```
+
+Depois, instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Passo 3: Executar a Aplicação
+
+Execute o servidor FastAPI usando o **Uvicorn**:
+
+```bash
+uvicorn main:app --reload
+```
+
+Isso iniciará o servidor em [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Você pode visualizar a documentação da API em:
+- **Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **ReDoc**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+
+### Passo 4: Executar Testes Unitários
+
+Este projeto inclui testes unitários de alto nível para validar a funcionalidade da API.
+Para executar os testes, use o **Pytest**:
+
+```bash
+pytest main.py
+```
+
+### Exemplos de Testes Unitários Incluídos
+
+- **`test_create_complex_message()`**: Testa a criação de um objeto `ComplexAlgo` complexo, incluindo mensagem, prioridade, email e tags.
+- **`test_get_all_complex()`**: Verifica se todos os objetos armazenados são recuperados corretamente.
+- **`test_get_by_id()`**: Testa a recuperação de um objeto pelo seu ID.
+- **`test_delete_by_id()`**: Testa a exclusão de um objeto pelo seu ID e garante que ele não esteja mais presente.
+
+## Arquitetura da Aplicação
+
+Este projeto utiliza uma lista simples em memória para armazenar os objetos, mas pode ser facilmente estendido para usar um banco de dados, como **PostgreSQL** ou **SQLite**, usando ORMs como **SQLAlchemy**.
+
+Os endpoints são projetados seguindo as melhores práticas RESTful, e a validação de tipos é garantida pelo **Pydantic** para manter a consistência dos dados e reduzir erros.
+
+## Tecnologias Utilizadas
+
+- **FastAPI**: Desenvolvimento assíncrono do lado do servidor.
+- **Pydantic**: Modelagem e validação de dados.
+- **Uvicorn**: Servidor ASGI para executar a aplicação FastAPI.
+- **Pytest**: Framework para testar aplicações em Python.
+
+## Diagrama
+
+![Diagrama da Arquitetura](https://user-images.githubusercontent.com/fastapi/example.png)  
+*Diagrama representando o fluxo de interação entre os componentes.*
+
+

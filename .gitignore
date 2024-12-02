@@ -1,0 +1,42 @@
+# Ambiente Virtual
+venv/
+
+# Arquivos do Python
+*.py[cod]
+__pycache__/
+*.pyo
+*.pyd
+
+# Arquivos de Logs
+*.log
+
+# Configurações do Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Testes e Cobertura
+.pytest_cache/
+coverage/
+htmlcov/
+.tox/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Arquivos temporários
+*.tmp
+*.bak
+
+# Configurações do Uvicorn
+*.reload
+
+# Outros
+.env
+.env.*
+
+# Arquivos gerados pelo pytest
+.cache/
+pytestdebug.log
+/.pytest_cache
