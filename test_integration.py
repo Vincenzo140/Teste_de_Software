@@ -1,16 +1,15 @@
 import pytest
 from fastapi.testclient import TestClient
-from test_unit import app  # Supondo que seu arquivo principal se chame main.py, onde a app é instanciada
+from test_unit import app 
 
 client = TestClient(app)
 
 
 @pytest.fixture
 def create_multiple_items():
-    # Cria um conjunto de itens no sistema para testes subsequentes
     items = []
     for i in range(5):
-        prioridade_valida = i + 1  # Agora as prioridades serão 1, 2, 3, 4, 5
+        prioridade_valida = i + 1  
         response = client.post("/post", json={
             "mensagem": f"Mensagem {i}",
             "prioridade": prioridade_valida,
